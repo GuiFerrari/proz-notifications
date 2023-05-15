@@ -8,8 +8,7 @@ services:
       dockerfile: dev.Dockerfile
     env_file: .env
     volumes:
-      - ./www/frontend/src:/app/src
-      - ./www/frontend/public:/app/public
+      - ./www/frontend:/app
     restart: always
     ports:
       - 3000:3000
