@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  next-app:
+    container_name: frontend
+    build:
+      context: ./www/frontend
+      dockerfile: dev.Dockerfile
+    env_file: .env
+    volumes:
+      - ./www/frontend/src:/app/src
+      - ./www/frontend/public:/app/public
+    restart: always
+    ports:
+      - 3000:3000
