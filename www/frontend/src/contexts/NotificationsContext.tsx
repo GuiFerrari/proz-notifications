@@ -1,15 +1,14 @@
 "use client"
 
 import { createContext, useCallback, useState } from 'react'
-import * as DialogPrimitive from "@radix-ui/react-dialog";
 
-import { NotificationDialog } from '@/components/NotificationDialog';
+import { NotificationDialog } from '@/components/Dialogs/NotificationDialog';
 
 import {
   NotificationsContextProviderProps,
   NotificationsContextType
 } from '@/interfaces'
-import { NotificationDelete } from '@/components/NotificationDelete';
+import { NotificationDelete } from '@/components/Dialogs/NotificationDelete';
 
 export const NotificationsContext = createContext({} as NotificationsContextType)
 

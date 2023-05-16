@@ -1,6 +1,7 @@
+import { NotificationFooter } from '@/components/Notifications/NotificationFooter';
+import { NotificationTitle } from '@/components/Notifications/NotificationTitle';
+
 import { useNotifications } from '@/hooks/useNotifications';
-import { NotificationFooter } from './Notifications/NotificationFooter';
-import { NotificationTitle } from './Notifications/NotificationTitle';
 
 export function NotificationCard() {
   const { openDialog, openDeleteDialog } = useNotifications()

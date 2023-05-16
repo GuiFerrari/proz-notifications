@@ -1,6 +1,7 @@
-import { NotificationsContextProvider } from '@/contexts/NotificationsContext';
-import './globals.css'
 import { Roboto } from 'next/font/google'
+import './globals.css'
+
+import { NotificationsContextProvider } from '@/contexts/NotificationsContext';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],

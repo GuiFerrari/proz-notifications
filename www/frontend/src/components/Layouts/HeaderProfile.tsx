@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { BellIcon } from '@heroicons/react/20/solid';
-import { NotificationsDropdown } from "./NotificationsDropdown";
+
+import { NotificationsDropdown } from "@/components/Notifications/NotificationsDropdown";
 
 export function HeaderProfile() {
   return (

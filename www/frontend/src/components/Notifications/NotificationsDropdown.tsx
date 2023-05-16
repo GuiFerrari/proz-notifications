@@ -4,8 +4,8 @@ import React, { Fragment } from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { BellIcon, EnvelopeIcon } from '@heroicons/react/20/solid';
 
-import { NotificationTitle } from './Notifications/NotificationTitle';
-import { NotificationFooter } from './Notifications/NotificationFooter';
+import { NotificationTitle } from '@/components/Notifications/NotificationTitle';
+import { NotificationFooter } from '@/components/Notifications/NotificationFooter';
 
 import { useNotifications } from '@/hooks/useNotifications';
 

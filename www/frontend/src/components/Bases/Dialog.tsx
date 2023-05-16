@@ -5,18 +5,14 @@ import { Transition } from "@headlessui/react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { clsx } from "clsx";
 
-import { NotificationTitle } from "./Notifications/NotificationTitle";
-import { NotificationFooter } from "./Notifications/NotificationFooter";
+import { DialogProps } from "@/interfaces";
 
-import { useNotifications } from "@/hooks/useNotifications";
-import { NotificationDialogProps } from "@/interfaces";
+export function Dialog({
+  children,
 
-export function NotificationDialog({
   isOpen,
   setIsOpen
-}: NotificationDialogProps) {
-  const { closeDialog } = useNotifications()
-
+}: DialogProps) {
   return (
     <DialogPrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
       <DialogPrimitive.Portal forceMount>
@@ -48,27 +44,12 @@ export function NotificationDialog({
               forceMount
               className={clsx(
                 "fixed z-50",
-                "w-[95vw] max-w-md rounded-lg md:w-full",
+                "w-[95vw] max-w-[31rem] rounded-lg p-4 md:w-full",
                 "top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]",
                 "bg-white"
               )}
             >
-
-              <div className="pt-4 px-4">
-                <NotificationTitle />
-
-                <p className="font-bold text-sm tracking-wide opacity-60 pb-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  ---
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do “eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-              </div>
-              
-
-              <NotificationFooter buttonText="Fechar" buttonAction={closeDialog} />
+              {children}
             </DialogPrimitive.Content>
           </Transition.Child>
         </Transition.Root>

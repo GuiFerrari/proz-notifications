@@ -1,8 +1,9 @@
 "use client"
 
-import { Header } from "@/components/Header";
-import { NotificationCard } from "@/components/NotificationCard";
-import { NotificationEmpty } from "@/components/NotificationEmpty";
+import { BellIcon } from '@heroicons/react/24/outline';
+
+import { Header } from "@/components/Layouts/Header";
+import { NotificationCard } from "@/components/Notifications/NotificationCard";
 
 import { useNotifications } from "@/hooks/useNotifications";
 
@@ -20,7 +21,12 @@ export default function Home() {
           <div className="grid grid-cols-3 gap-6 py-6">
             {notificationsList.map(notification => <NotificationCard key={notification.id} />)}
           </div>
-        ) : <NotificationEmpty />}
+        ) : (
+          <div className="flex justify-center items-center gap-10 py-10">
+            <BellIcon className="w-16 opacity-50" />
+            <span className="opacity-60">Você não possui notificações recentes.</span>
+          </div>
+        )}
       </main>
     </div>
   )

@@ -1,5 +1,6 @@
+import { Button } from "@/components/Bases/Button";
+
 import { NotificationFooterProps } from "@/interfaces";
-import { Button } from "../Default/Button";
 
 export function NotificationFooter({
   buttonText,
