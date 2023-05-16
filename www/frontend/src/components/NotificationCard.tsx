@@ -2,7 +2,7 @@ import { EnvelopeIcon, XMarkIcon } from '@heroicons/react/24/solid';
 
 export function NotificationCard() {
   return (
-    <div className="w-auto max-w-sm bg-white rounded-lg shadow">
+    <div className="w-auto max-w-sm bg-white rounded-lg shadow border-b-2 border-b-orange-500">
       <div className="px-4 pt-4 pb-6">
 
         <div className="flex items-start gap-3 pb-4">

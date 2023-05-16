@@ -15,6 +15,16 @@ export default function Home() {
           <NotificationCard />
           <NotificationCard />
           <NotificationCard />
+          <NotificationCard />
+          <NotificationCard />
+          <NotificationCard />
+          <NotificationCard />
+          <NotificationCard />
+          <NotificationCard />
+          <NotificationCard />
+          <NotificationCard />
+          <NotificationCard />
+          <NotificationCard />
         </div>
       </main>
     </div>
