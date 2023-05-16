@@ -3,22 +3,22 @@
 import React, { Fragment, useState } from "react";
 import { Transition } from "@headlessui/react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { BellIcon } from '@heroicons/react/20/solid';
 import { clsx } from "clsx";
+
 import { NotificationTitle } from "./Notifications/NotificationTitle";
 import { NotificationFooter } from "./Notifications/NotificationFooter";
 
-interface DialogProps {}
+import { useNotifications } from "@/hooks/useNotifications";
+import { NotificationDialogProps } from "@/interfaces";
 
-export function NotificationDialog() {
-  let [isOpen, setIsOpen] = useState(false);
+export function NotificationDialog({
+  isOpen,
+  setIsOpen
+}: NotificationDialogProps) {
+  const { closeDialog } = useNotifications()
 
   return (
     <DialogPrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
-      <DialogPrimitive.Trigger asChild>
-        <button>Click</button>
-      </DialogPrimitive.Trigger>
-
       <DialogPrimitive.Portal forceMount>
         <Transition.Root show={isOpen}>
           <Transition.Child
@@ -65,16 +65,7 @@ export function NotificationDialog() {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do “eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
 
-              <NotificationFooter />
-
-              {/* <DialogPrimitive.Close
-                className={clsx(
-                  "absolute top-3.5 right-3.5 inline-flex items-center justify-center rounded-full p-1",
-                  "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
-                )}
-              >
-                <BellIcon className="h-4 w-4 text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-400" />
-              </DialogPrimitive.Close> */}
+              <NotificationFooter buttonText="Fechar" buttonAction={closeDialog} />
             </DialogPrimitive.Content>
           </Transition.Child>
         </Transition.Root>

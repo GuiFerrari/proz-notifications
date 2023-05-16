@@ -1,6 +1,10 @@
 "use client"
 
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useCallback, useState } from 'react'
+import * as DialogPrimitive from "@radix-ui/react-dialog";
+
+import { NotificationDialog } from '@/components/NotificationDialog';
+
 import {
   NotificationsContextProviderProps,
   NotificationsContextType
@@ -35,15 +39,30 @@ export function NotificationsContextProvider({ children }: NotificationsContextP
       created_at: '31/03/2022 - 19:33'
     },
   ]);
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+
+  const openDialog = useCallback(() => {
+    setDialogIsOpen(true)
+  }, [])
+
+  const closeDialog = useCallback(() => {
+    setDialogIsOpen(false)
+  }, [])
 
   return (
     <NotificationsContext.Provider
       value={{
         notificationsList,
-        notificationsCount: notificationsList.length
+        notificationsCount: notificationsList.length,
+
+        openDialog,
+        closeDialog,
+        setDialogIsOpen
       }}
     >
       {children}
+
+      <NotificationDialog isOpen={dialogIsOpen} setIsOpen={setDialogIsOpen} />
     </NotificationsContext.Provider>
   )
 }

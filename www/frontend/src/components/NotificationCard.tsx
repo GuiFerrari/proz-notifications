@@ -1,7 +1,10 @@
+import { useNotifications } from '@/hooks/useNotifications';
 import { NotificationFooter } from './Notifications/NotificationFooter';
 import { NotificationTitle } from './Notifications/NotificationTitle';
 
 export function NotificationCard() {
+  const { openDialog } = useNotifications()
+
   return (
     <div className="w-auto max-w-sm bg-white rounded-lg shadow border-b-2 border-b-orange-500">
       <div className="px-4 pt-4 pb-6">
@@ -13,7 +16,7 @@ export function NotificationCard() {
         </p>
       </div>
       
-      <NotificationFooter />
+      <NotificationFooter buttonText="Ler mensagem" buttonAction={openDialog} />
     </div>
   )
 }
