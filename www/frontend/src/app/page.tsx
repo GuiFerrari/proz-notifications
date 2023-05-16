@@ -4,6 +4,7 @@ export default function Home() {
   return (
     <div className="h-screen antialiased">
       <Header />
+      
       <main>
         main
       </main>

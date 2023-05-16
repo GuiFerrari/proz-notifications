@@ -26,7 +26,7 @@ export function HeaderProfile() {
 
         <div className="flex flex-col text-left">
           <span className="text-white">João da Silva</span>
-          <span className="text-gray-100">Professor</span>
+          <span className="text-gray-100 font-bold text-sm">Professor</span>
         </div>
       </button>
     </div>
