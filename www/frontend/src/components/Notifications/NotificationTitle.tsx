@@ -3,7 +3,8 @@ import { EnvelopeIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { NotificationTitleProps } from '@/interfaces';
 
 export function NotificationTitle({
-  withoutCloseIcon = false
+  withoutCloseIcon = false,
+  closeButtonAction
 }: NotificationTitleProps) {
   return (
     <div className="flex items-start gap-3 pb-4">
@@ -19,7 +20,7 @@ export function NotificationTitle({
       </div>
 
       {!withoutCloseIcon && (
-        <button type="button" className="w-6">
+        <button type="button" onClick={closeButtonAction} className="w-6">
           <XMarkIcon className="text-purple-300" />
         </button>
       )}

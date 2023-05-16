@@ -48,7 +48,7 @@ export function NotificationsDropdown() {
               ))}
 
               <DropdownMenu.Item>
-                <NotificationFooter buttonText='Ver todas' />
+                <NotificationFooter buttonText='Ver todas' buttonAction={() => {}} />
               </DropdownMenu.Item>
             </Fragment>
           ) : (

@@ -9,6 +9,7 @@ import {
   NotificationsContextProviderProps,
   NotificationsContextType
 } from '@/interfaces'
+import { NotificationDelete } from '@/components/NotificationDelete';
 
 export const NotificationsContext = createContext({} as NotificationsContextType)
 
@@ -40,6 +41,7 @@ export function NotificationsContextProvider({ children }: NotificationsContextP
     },
   ]);
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
+  const [dialogDeleteIsOpen, setDialogDeleteIsOpen] = useState(false);
 
   const openDialog = useCallback(() => {
     setDialogIsOpen(true)
@@ -47,6 +49,14 @@ export function NotificationsContextProvider({ children }: NotificationsContextP
 
   const closeDialog = useCallback(() => {
     setDialogIsOpen(false)
+  }, [])
+
+  const openDeleteDialog = useCallback(() => {
+    setDialogDeleteIsOpen(true)
+  }, [])
+
+  const closeDeleteDialog = useCallback(() => {
+    setDialogDeleteIsOpen(false)
   }, [])
 
   return (
@@ -57,12 +67,14 @@ export function NotificationsContextProvider({ children }: NotificationsContextP
 
         openDialog,
         closeDialog,
-        setDialogIsOpen
+        openDeleteDialog,
+        closeDeleteDialog,
       }}
     >
       {children}
 
       <NotificationDialog isOpen={dialogIsOpen} setIsOpen={setDialogIsOpen} />
+      <NotificationDelete isOpen={dialogDeleteIsOpen} setIsOpen={setDialogDeleteIsOpen} />
     </NotificationsContext.Provider>
   )
 }

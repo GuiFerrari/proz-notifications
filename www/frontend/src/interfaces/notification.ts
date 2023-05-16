@@ -17,11 +17,15 @@ export interface NotificationsContextType {
 
   openDialog: () => void
   closeDialog: () => void
-  setDialogIsOpen: Dispatch<SetStateAction<boolean>>
+
+  openDeleteDialog: () => void
+  closeDeleteDialog: () => void
 }
 
 export interface NotificationTitleProps {
   withoutCloseIcon?: boolean
+
+  closeButtonAction?: () => void
 }
 
 export interface NotificationFooterProps {
