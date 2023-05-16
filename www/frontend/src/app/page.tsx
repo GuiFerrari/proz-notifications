@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header";
 import { NotificationCard } from "@/components/NotificationCard";
+import { NotificationDialog } from "@/components/NotificationDialog";
 import { NotificationEmpty } from "@/components/NotificationEmpty";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
 
         <div className="grid grid-cols-3 gap-6 py-6">
           {/* <NotificationEmpty /> */}
+          <NotificationDialog />
           <NotificationCard />
           <NotificationCard />
           <NotificationCard />

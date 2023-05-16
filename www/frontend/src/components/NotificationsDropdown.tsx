@@ -2,12 +2,8 @@
 
 import React from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import {
-  BellIcon,
-  AcademicCapIcon,
-  CheckIcon,
-  ChevronRightIcon
-} from '@heroicons/react/20/solid';
+import { BellIcon } from '@heroicons/react/20/solid';
+
 import { NotificationTitle } from './Notifications/NotificationTitle';
 import { NotificationFooter } from './Notifications/NotificationFooter';
 
@@ -39,7 +35,7 @@ export function NotificationsDropdown() {
           sideOffset={5}
           align='end'
         >
-          <DropdownMenu.Item className="px-4">
+          <DropdownMenu.Item className="px-4 border-none">
             <NotificationTitle />
           </DropdownMenu.Item>
           
