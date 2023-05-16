@@ -1,11 +1,16 @@
 import Image from "next/image";
-import { Bars3Icon } from '@heroicons/react/20/solid'
+import { Bars3Icon } from '@heroicons/react/20/solid';
 
-export async function Header() {
+import { HeaderProfile } from "./HeaderProfile";
+
+export function Header() {
   return (
     <div className="flex justify-between bg-purple-800 px-6 py-4">
       <div className="flex justify-center items-center gap-4">
-        <Bars3Icon className="w-6 text-white" />
+        <button type="button">
+          <Bars3Icon className="w-6 text-white" />
+        </button>
+
         <Image
           src="/logo.svg"
           alt="Vercel Logo"
@@ -15,7 +20,9 @@ export async function Header() {
         />
       </div>
 
-      <div>oirtra</div>
+      <div>
+        <HeaderProfile />
+      </div>
     </div>
   )
 }
