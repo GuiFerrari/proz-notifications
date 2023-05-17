@@ -3,12 +3,12 @@
 import { createContext, useCallback, useState } from 'react'
 
 import { NotificationDialog } from '@/components/Dialogs/NotificationDialog';
+import { NotificationDelete } from '@/components/Dialogs/NotificationDelete';
 
 import {
   NotificationsContextProviderProps,
   NotificationsContextType
 } from '@/interfaces'
-import { NotificationDelete } from '@/components/Dialogs/NotificationDelete';
 
 export const NotificationsContext = createContext({} as NotificationsContextType)
 
