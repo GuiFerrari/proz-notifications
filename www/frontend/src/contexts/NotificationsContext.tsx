@@ -1,11 +1,12 @@
 "use client"
 
-import { createContext, useCallback, useState } from 'react'
+import { createContext, useCallback, useEffect, useState } from 'react'
 
 import { NotificationDialog } from '@/components/Dialogs/NotificationDialog';
 import { NotificationDelete } from '@/components/Dialogs/NotificationDelete';
 
 import {
+  NotificationProps,
   NotificationsContextProviderProps,
   NotificationsContextType
 } from '@/interfaces'
@@ -13,38 +14,33 @@ import {
 export const NotificationsContext = createContext({} as NotificationsContextType)
 
 export function NotificationsContextProvider({ children }: NotificationsContextProviderProps) {
-  const [notificationsList] = useState([
-    {
-      id: '1',
-      title: 'Proz | Comunidado sobre nova unidade',
-      decription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      created_at: '31/03/2022 - 19:33'
-    },
-    {
-      id: '2',
-      title: 'Proz | Comunidado sobre nova unidade',
-      decription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      created_at: '31/03/2022 - 19:33'
-    },
-    {
-      id: '3',
-      title: 'Proz | Comunidado sobre nova unidade',
-      decription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      created_at: '31/03/2022 - 19:33'
-    },
-    {
-      id: '4',
-      title: 'Proz | Comunidado sobre nova unidade',
-      decription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      created_at: '31/03/2022 - 19:33'
-    },
-  ]);
+  const [notificationsList, setNotificationsList] = useState<NotificationProps[]>([]);
+  const [notificationsOpen, setNotificationsOpen] = useState<NotificationProps | null>(null);
+  
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [dialogDeleteIsOpen, setDialogDeleteIsOpen] = useState(false);
 
-  const openDialog = useCallback(() => {
+  const openDialog = useCallback((id: string) => {
+    const findNotification = notificationsList.find(
+      notification => notification.id === id
+    )
+
+    if (findNotification) {
+      setNotificationsOpen(findNotification)
+
+      fetch(`http://localhost:3333/notifications/${id}`, { method: 'PUT' })
+
+      setNotificationsList(prevState => prevState.map((notification) => {
+        if (notification.id === id) {
+          return { ...notification, readed: true };
+        }
+  
+        return notification;
+      }))
+    }
+
     setDialogIsOpen(true)
-  }, [])
+  }, [notificationsList])
 
   const closeDialog = useCallback(() => {
     setDialogIsOpen(false)
@@ -58,11 +54,18 @@ export function NotificationsContextProvider({ children }: NotificationsContextP
     setDialogDeleteIsOpen(false)
   }, [])
 
+  useEffect(() => {
+    fetch('http://localhost:3333/notifications')
+      .then(response => response.json())
+      .then(data => setNotificationsList(data))
+  }, [])
+
   return (
     <NotificationsContext.Provider
       value={{
         notificationsList,
         notificationsCount: notificationsList.length,
+        notificationsOpen,
 
         openDialog,
         closeDialog,

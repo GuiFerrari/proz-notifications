@@ -19,7 +19,7 @@ export default function Home() {
 
         {notificationsCount > 0 ? (
           <div className="grid grid-cols-3 gap-6 py-6">
-            {notificationsList.map(notification => <NotificationCard key={notification.id} />)}
+            {notificationsList.map(notification => <NotificationCard key={notification.id} notification={notification} />)}
           </div>
         ) : (
           <div className="flex justify-center items-center gap-10 py-10">

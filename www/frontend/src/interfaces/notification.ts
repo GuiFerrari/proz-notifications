@@ -3,8 +3,9 @@ import { ReactNode } from "react"
 export interface NotificationProps {
   id: string
   title: string
-  decription: string
-  created_at: string
+  description: string
+  readed: boolean;
+  created_at: Date
 }
 
 export interface NotificationsContextProviderProps {
@@ -14,15 +15,17 @@ export interface NotificationsContextProviderProps {
 export interface NotificationsContextType {
   notificationsList: NotificationProps[]
   notificationsCount: number
+  notificationsOpen: NotificationProps | null
 
-  openDialog: () => void
+  openDialog: (id: string) => void
   closeDialog: () => void
 
-  openDeleteDialog: () => void
+  openDeleteDialog: (id: string) => void
   closeDeleteDialog: () => void
 }
 
 export interface NotificationTitleProps {
+  notification: NotificationProps
   withoutCloseIcon?: boolean
 
   closeButtonAction?: () => void
@@ -36,4 +39,8 @@ export interface NotificationFooterProps {
 export interface NotificationDialogProps {
   isOpen: boolean
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export interface NotificationCardProps {
+  notification: NotificationProps
 }

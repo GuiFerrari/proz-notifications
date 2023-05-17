@@ -13,20 +13,15 @@ export function NotificationDialog({
   isOpen,
   setIsOpen
 }: NotificationDialogProps) {
-  const { closeDialog } = useNotifications()
+  const { notificationsOpen, closeDialog } = useNotifications()
 
   return (
     <Dialog isOpen={isOpen} setIsOpen={setIsOpen}>
       <div className="pt-4 px-4">
-        <NotificationTitle />
+        <NotificationTitle notification={notificationsOpen!} />
 
         <p className="font-bold text-sm tracking-wide opacity-60 pb-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          ---
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do “eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          {notificationsOpen?.description}
         </p>
       </div>
       

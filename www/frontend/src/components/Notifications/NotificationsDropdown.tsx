@@ -43,7 +43,7 @@ export function NotificationsDropdown() {
             <Fragment>
               {notificationsList.map(notification => (
                 <DropdownMenu.Item key={notification.id} className="px-4 border-none">
-                  <NotificationTitle withoutCloseIcon />
+                  <NotificationTitle withoutCloseIcon notification={notification} />
                 </DropdownMenu.Item>
               ))}
 
