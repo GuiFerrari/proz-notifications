@@ -22,7 +22,7 @@ Backend: `http://localhost:3333`
 ## Front-end
 
 <p align="center">
-  <img src="https://github.com/guiferrari/proz-notification/blob/main/images/front.png?raw=true" width="200" alt="Tela frontend" />
+  <img src="https://i.imgur.com/ujDuHUX.png" width="1000" alt="Tela frontend" />
 </p>
 
 Bibliotecas utilizadas:
@@ -63,7 +63,7 @@ Principais Recursos:
 ## Backend
 
 <p align="center">
-  <img src="https://github.com/guiferrari/proz-notification/blob/main/images/back.png?raw=true" width="200" alt="Tela backend" />
+  <img src="https://i.imgur.com/q1uBRjF.png" width="1000" alt="Tela backend" />
 </p>
 
 <h3 align="center">Para teste de envio de notificações, acessar o link http://localhost:3333/api</h3>
