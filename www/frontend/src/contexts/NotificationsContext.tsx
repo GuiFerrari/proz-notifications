@@ -46,13 +46,38 @@ export function NotificationsContextProvider({ children }: NotificationsContextP
     setDialogIsOpen(false)
   }, [])
 
-  const openDeleteDialog = useCallback(() => {
-    setDialogDeleteIsOpen(true)
-  }, [])
+  const openDeleteDialog = useCallback((id: string) => {
+    const findNotification = notificationsList.find(
+      notification => notification.id === id
+    )
+
+    if (findNotification) {
+      setNotificationsOpen(findNotification)
+      setDialogDeleteIsOpen(true)
+    }
+  }, [notificationsList])
 
   const closeDeleteDialog = useCallback(() => {
     setDialogDeleteIsOpen(false)
   }, [])
+
+  const deleteNotification = useCallback(() => {
+    const id = notificationsOpen?.id
+
+    const findNotification = notificationsList.find(
+      notification => notification.id === id
+    )
+
+    if (findNotification) {
+      setNotificationsOpen(findNotification)
+
+      fetch(`http://localhost:3333/notifications/${id}`, { method: 'DELETE' })
+
+      setNotificationsList(prevState => prevState.filter((notification) => notification.id !== id))
+    }
+
+    setDialogDeleteIsOpen(false)
+  }, [notificationsList, notificationsOpen])
 
   useEffect(() => {
     fetch('http://localhost:3333/notifications')
@@ -71,6 +96,7 @@ export function NotificationsContextProvider({ children }: NotificationsContextP
         closeDialog,
         openDeleteDialog,
         closeDeleteDialog,
+        deleteNotification
       }}
     >
       {children}

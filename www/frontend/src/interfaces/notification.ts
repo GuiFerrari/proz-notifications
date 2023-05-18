@@ -22,6 +22,8 @@ export interface NotificationsContextType {
 
   openDeleteDialog: (id: string) => void
   closeDeleteDialog: () => void
+
+  deleteNotification: () => void
 }
 
 export interface NotificationTitleProps {

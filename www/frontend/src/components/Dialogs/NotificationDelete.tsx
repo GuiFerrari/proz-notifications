@@ -7,11 +7,14 @@ import { Dialog } from "@/components/Bases/Dialog";
 import { Button } from "@/components/Bases/Button";
 
 import { NotificationDialogProps } from "@/interfaces";
+import { useNotifications } from "@/hooks/useNotifications";
 
 export function NotificationDelete({
   isOpen,
   setIsOpen
 }: NotificationDialogProps) {
+  const { closeDeleteDialog, deleteNotification } = useNotifications()
+
   return (
     <Dialog isOpen={isOpen} setIsOpen={setIsOpen}>
       <div className="flex flex-col justify-center items-center gap-2">
@@ -22,8 +25,8 @@ export function NotificationDelete({
       </div>
 
       <div className="flex justify-center items-center gap-4 pt-6">
-        <Button size="full" buttonText="Não" buttonAction={() => {}}/>
-        <Button variant="delete" size="full" buttonText="Sim" buttonAction={() => {}}/>
+        <Button size="full" buttonText="Não" buttonAction={closeDeleteDialog}/>
+        <Button variant="delete" size="full" buttonText="Sim" buttonAction={deleteNotification}/>
       </div>
     </Dialog>
   );
