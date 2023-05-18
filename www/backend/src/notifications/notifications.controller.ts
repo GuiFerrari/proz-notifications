@@ -1,5 +1,14 @@
-import { Controller, Get, Post, Param, Delete, Put } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Param,
+  Delete,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { NotificationsService } from './notifications.service';
+import { NotificationsQuery } from './entities/notification.entity';
 
 @Controller('notifications')
 export class NotificationsController {
@@ -11,8 +20,8 @@ export class NotificationsController {
   }
 
   @Get()
-  findAll() {
-    return this.notificationsService.findAll();
+  findAll(@Query() query: NotificationsQuery) {
+    return this.notificationsService.findAll(query);
   }
 
   @Put(':id')

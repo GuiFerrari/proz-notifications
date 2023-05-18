@@ -2,6 +2,7 @@ import { v4 as uuid } from 'uuid';
 import { Injectable } from '@nestjs/common';
 
 import { CreateNotificationDto } from './dto/create-notification.dto';
+import { NotificationsQuery } from './entities/notification.entity';
 
 let notifications: CreateNotificationDto[] = [];
 
@@ -36,10 +37,31 @@ export class NotificationsService {
     return novoArray;
   }
 
-  findAll() {
-    return notifications.sort((a, b) => {
+  findAll({ page, limit }: NotificationsQuery) {
+    const notificationsSorted = notifications.sort((a, b) => {
       return b.created_at.getTime() - a.created_at.getTime();
     });
+
+    const pageNumber = page ? Number(page) : 1;
+    const limitNumber = limit ? Number(limit) : 6;
+    const limitNumberIndex = limitNumber !== 0 ? limitNumber : 30;
+
+    const startIndex =
+      ((page ? pageNumber : 1) - 1) * (limitNumber !== 0 ? limitNumber : 6);
+    const pages = Math.ceil(notifications.length / limitNumberIndex);
+
+    return {
+      page: pageNumber,
+      results_per_page: limitNumberIndex,
+      results_size: notifications.length,
+      results_start: startIndex + 1,
+      results_end: startIndex + notifications.length,
+      total_pages: pages,
+      next_page: startIndex < pages ? pageNumber + 1 : null,
+      prev_page: startIndex > 0 ? pageNumber - 1 : null,
+
+      results: notificationsSorted.slice(startIndex, pageNumber * limitNumber),
+    };
   }
 
   remove(id: string) {
