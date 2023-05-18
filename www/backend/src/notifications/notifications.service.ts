@@ -51,14 +51,16 @@ export class NotificationsService {
     const pages = Math.ceil(notifications.length / limitNumberIndex);
 
     return {
-      page: pageNumber,
-      results_per_page: limitNumberIndex,
-      results_size: notifications.length,
-      results_start: startIndex + 1,
-      results_end: startIndex + notifications.length,
-      total_pages: pages,
-      next_page: startIndex < pages ? pageNumber + 1 : null,
-      prev_page: startIndex > 0 ? pageNumber - 1 : null,
+      metadata: {
+        page: pageNumber,
+        results_per_page: limitNumberIndex,
+        results_size: notifications.length,
+        results_start: startIndex + 1,
+        results_end: startIndex + notifications.length,
+        total_pages: pages,
+        next_page: startIndex < pages ? pageNumber + 1 : null,
+        prev_page: startIndex > 0 ? pageNumber - 1 : null,
+      },
 
       results: notificationsSorted.slice(startIndex, pageNumber * limitNumber),
     };

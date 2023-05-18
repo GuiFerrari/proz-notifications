@@ -8,6 +8,23 @@ export interface NotificationProps {
   created_at: Date
 }
 
+export interface NotificationMetadataProps {
+  page: number;
+  results_per_page: number;
+  results_size: number;
+  results_start: number;
+  results_end: number;
+  total_pages: number;
+  next_page: number | null;
+  prev_page: number | null;
+}
+
+export interface NotificationGetAllProps {
+  metadata: NotificationMetadataProps,
+
+  results: NotificationProps[];
+}
+
 export interface NotificationsContextProviderProps {
   children: ReactNode
 }
@@ -17,6 +34,7 @@ export interface NotificationsContextType {
   notificationsCount: number
   notificationsOpen: NotificationProps | null
   hasNotificationsUnread: boolean
+  metadata: NotificationMetadataProps
 
   openDialog: (id: string) => void
   closeDialog: () => void

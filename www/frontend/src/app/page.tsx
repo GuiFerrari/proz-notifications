@@ -6,6 +6,7 @@ import { Header } from "@/components/Layouts/Header";
 import { NotificationCard } from "@/components/Notifications/NotificationCard";
 
 import { useNotifications } from "@/hooks/useNotifications";
+import { Pagination } from '@/components/Pagination/Pagination';
 
 export default function Home() {
   const { notificationsCount, notificationsList } = useNotifications()
@@ -16,6 +17,8 @@ export default function Home() {
 
       <main className="w-full max-w-[74rem] px-4 m-auto">
         <h1 className="font-bold text-2xl py-6 border-b-[1px] border-b-gray-100">Notificações</h1>
+
+        <Pagination />
 
         {notificationsCount > 0 ? (
           <div className="grid grid-cols-1 gap-6 py-6 md:grid-cols-3 sm:grid-cols-2">
