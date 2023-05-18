@@ -14,11 +14,11 @@ export default function Home() {
     <div className="h-screen antialiased">
       <Header />
 
-      <main className="w-full max-w-[1200px] m-auto">
+      <main className="w-full max-w-[74rem] px-4 m-auto">
         <h1 className="font-bold text-2xl py-6 border-b-[1px] border-b-gray-100">Notificações</h1>
 
         {notificationsCount > 0 ? (
-          <div className="grid grid-cols-3 gap-6 py-6">
+          <div className="grid grid-cols-1 gap-6 py-6 md:grid-cols-3 sm:grid-cols-2">
             {notificationsList.map(notification => <NotificationCard key={notification.id} notification={notification} />)}
           </div>
         ) : (

@@ -11,7 +11,7 @@ export function NotificationCard({
   const { openDialog, openDeleteDialog } = useNotifications()
 
   return (
-    <div className={classNames('w-auto max-w-sm bg-white rounded-lg shadow border-b-2', {
+    <div className={classNames('w-auto max-w-sm bg-white rounded-lg shadow border-b-2 m-auto', {
       'border-b-orange-500': !notification.readed
     })}>
       <div className="px-4 pt-4 pb-6">

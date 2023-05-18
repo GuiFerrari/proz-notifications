@@ -17,7 +17,7 @@ export function HeaderProfile() {
           priority
         />
 
-        <div className="flex flex-col text-left">
+        <div className="flex-col text-left hidden sm:flex">
           <span className="text-white">João da Silva</span>
           <span className="text-gray-100 font-bold text-sm">Professor</span>
         </div>
