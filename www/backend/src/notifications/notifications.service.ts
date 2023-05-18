@@ -37,7 +37,9 @@ export class NotificationsService {
   }
 
   findAll() {
-    return notifications;
+    return notifications.sort((a, b) => {
+      return b.created_at.getTime() - a.created_at.getTime();
+    });
   }
 
   remove(id: string) {
