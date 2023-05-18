@@ -13,11 +13,11 @@ function generatePagesArray (from: number, to: number) {
 }
 
 export function Pagination() {
-  const { metadata } = useNotifications()
+  const { metadata, handleGetNotifications } = useNotifications()
 
-  const handleClick = useCallback((page: string) => {
-    console.log(page)
-  }, [])
+  const handleClick = useCallback((page: number) => {
+    handleGetNotifications(String(page))
+  }, [handleGetNotifications])
 
   if (metadata.total_pages === 0) {
     return null
@@ -32,22 +32,19 @@ export function Pagination() {
     : [];
 
   return (
-    <nav aria-label="Page navigation">
+    <nav aria-label="Page navigation" className="flex justify-center">
       <ul className="inline-flex items-center -space-x-px gap-2">
         
-        {metadata.page !== 1 && (
-          <PaginationItem page={String(metadata.page - 1)} onPageChange={handleClick} chevronLeft />
-        )}
-
         <PaginationItem
-          page={String(metadata.page)}
+          page={metadata.page - 1}
           onPageChange={handleClick}
           chevronLeft
+          disabled={metadata.page === 1}
         />
 
         {metadata.page > (1 + 1) && (
           <>
-            <PaginationItem page='1' onPageChange={handleClick} />
+            <PaginationItem page={1} onPageChange={handleClick} />
             {metadata.page > (2 + 1) && (
               <span>...</span>
             )}
@@ -55,13 +52,13 @@ export function Pagination() {
         )}
 
         {previousPages.length > 0 && previousPages.map(page => (
-          <PaginationItem key={page} page={String(page)} onPageChange={handleClick} />
+          <PaginationItem key={page} page={page} onPageChange={handleClick} />
         ))}
 
-        <PaginationItem page={String(metadata.page)} isCurrent onPageChange={handleClick} />
+        <PaginationItem page={metadata.page} isCurrent onPageChange={handleClick} />
 
         {nextPages.length > 0 && nextPages.map(page => (
-          <PaginationItem key={page} page={String(page)} onPageChange={handleClick} />
+          <PaginationItem key={page} page={page} onPageChange={handleClick} />
         ))}
 
         {(metadata.page + 1) < metadata.total_pages && (
@@ -69,24 +66,16 @@ export function Pagination() {
             {(metadata.page + 1 + 1) < metadata.total_pages && (
               <span>...</span>
             )}
-            <PaginationItem page={String(metadata.total_pages)} onPageChange={handleClick} />
+            <PaginationItem page={metadata.total_pages} onPageChange={handleClick} />
           </>
         )}
 
-        {metadata.page !== metadata.total_pages && (
-          <PaginationItem page={String(metadata.page + 1)} onPageChange={handleClick} chevronRight />
-        )}
-        
-        {/* <PaginationItem
-          page={String(metadata.page)}
-          onPageChange={handleClick}
-        />
-        
         <PaginationItem
-          page={String(metadata.page)}
+          page={metadata.page + 1}
           onPageChange={handleClick}
           chevronRight
-        /> */}
+          disabled={metadata.page === metadata.total_pages}
+        />
       
       </ul>
     </nav>

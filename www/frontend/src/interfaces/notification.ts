@@ -36,6 +36,8 @@ export interface NotificationsContextType {
   hasNotificationsUnread: boolean
   metadata: NotificationMetadataProps
 
+  handleGetNotifications: (page?: string) => void
+
   openDialog: (id: string) => void
   closeDialog: () => void
 

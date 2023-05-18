@@ -93,8 +93,12 @@ export function NotificationsContextProvider({ children }: NotificationsContextP
     setDialogDeleteIsOpen(false)
   }, [notificationsList, notificationsOpen])
 
-  const handleGetNotifications = useCallback(() => {
-    new Http().get<NotificationGetAllProps>(`/notifications`)
+  const handleGetNotifications = useCallback((page?: string) => {
+    new Http().get<NotificationGetAllProps>(`/notifications`, {
+      params: {
+        page: page || 1
+      }
+    })
       .then(response => {
         setNotificationsList(response.data.results)
         setMetadata(response.data.metadata)
@@ -126,6 +130,7 @@ export function NotificationsContextProvider({ children }: NotificationsContextP
         hasNotificationsUnread,
         metadata,
 
+        handleGetNotifications,
         openDialog,
         closeDialog,
         openDeleteDialog,

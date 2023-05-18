@@ -1,7 +1,9 @@
 export interface PaginationItemProps {
-  page: string
+  page: number
   isCurrent?: boolean
   chevronLeft?: boolean;
   chevronRight?: boolean;
-  onPageChange: (page: string) => void;
+  disabled?: boolean
+
+  onPageChange: (page: number) => void;
 }

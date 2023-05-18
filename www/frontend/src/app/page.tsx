@@ -18,8 +18,6 @@ export default function Home() {
       <main className="w-full max-w-[74rem] px-4 m-auto">
         <h1 className="font-bold text-2xl py-6 border-b-[1px] border-b-gray-100">Notificações</h1>
 
-        <Pagination />
-
         {notificationsCount > 0 ? (
           <div className="grid grid-cols-1 gap-6 py-6 md:grid-cols-3 sm:grid-cols-2">
             {notificationsList.map(notification => <NotificationCard key={notification.id} notification={notification} />)}
@@ -30,6 +28,8 @@ export default function Home() {
             <span className="opacity-60">Você não possui notificações recentes.</span>
           </div>
         )}
+
+        <Pagination />
       </main>
     </div>
   )
