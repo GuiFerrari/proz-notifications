@@ -16,6 +16,7 @@ export interface NotificationsContextType {
   notificationsList: NotificationProps[]
   notificationsCount: number
   notificationsOpen: NotificationProps | null
+  hasNotificationsUnread: boolean
 
   openDialog: (id: string) => void
   closeDialog: () => void

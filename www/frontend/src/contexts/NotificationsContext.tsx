@@ -1,9 +1,11 @@
 "use client"
 
-import { createContext, useCallback, useEffect, useState } from 'react'
+import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
 
 import { NotificationDialog } from '@/components/Dialogs/NotificationDialog';
 import { NotificationDelete } from '@/components/Dialogs/NotificationDelete';
+
+import { Http } from '@/infra/http/http';
 
 import {
   NotificationProps,
@@ -28,7 +30,7 @@ export function NotificationsContextProvider({ children }: NotificationsContextP
     if (findNotification) {
       setNotificationsOpen(findNotification)
 
-      fetch(`http://localhost:3333/notifications/${id}`, { method: 'PUT' })
+      new Http().put(`/notifications/${id}`)
 
       setNotificationsList(prevState => prevState.map((notification) => {
         if (notification.id === id) {
@@ -71,7 +73,7 @@ export function NotificationsContextProvider({ children }: NotificationsContextP
     if (findNotification) {
       setNotificationsOpen(findNotification)
 
-      fetch(`http://localhost:3333/notifications/${id}`, { method: 'DELETE' })
+      new Http().delete(`/notifications/${id}`)
 
       setNotificationsList(prevState => prevState.filter((notification) => notification.id !== id))
     }
@@ -79,10 +81,23 @@ export function NotificationsContextProvider({ children }: NotificationsContextP
     setDialogDeleteIsOpen(false)
   }, [notificationsList, notificationsOpen])
 
+  const hasNotificationsUnread = useMemo(() => {
+    let response = false
+
+    for (var i = 0; i < notificationsList.length; i++) {
+      if (!notificationsList[i].readed) {
+        response = true
+      }
+    }
+
+    return response
+  }, [notificationsList])
+
+  console.log('hasNotificationsUnread', hasNotificationsUnread)
+
   useEffect(() => {
-    fetch('http://localhost:3333/notifications')
-      .then(response => response.json())
-      .then(data => setNotificationsList(data))
+    new Http().get(`/notifications`)
+      .then(response => setNotificationsList(response.data))
   }, [])
 
   return (
@@ -91,6 +106,7 @@ export function NotificationsContextProvider({ children }: NotificationsContextP
         notificationsList,
         notificationsCount: notificationsList.length,
         notificationsOpen,
+        hasNotificationsUnread,
 
         openDialog,
         closeDialog,

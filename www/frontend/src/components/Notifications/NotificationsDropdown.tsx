@@ -10,7 +10,7 @@ import { NotificationFooter } from '@/components/Notifications/NotificationFoote
 import { useNotifications } from '@/hooks/useNotifications';
 
 export function NotificationsDropdown() {
-  const { notificationsCount, notificationsList } = useNotifications()
+  const { notificationsCount, notificationsList, hasNotificationsUnread } = useNotifications()
 
   return (
     <DropdownMenu.Root>
@@ -21,7 +21,7 @@ export function NotificationsDropdown() {
         >
           <BellIcon className="h-5 w-5 text-purple-800" />
 
-          {notificationsCount > 0 && (
+          {hasNotificationsUnread && (
             <div className="absolute -top-1 -right-2">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -41,7 +41,7 @@ export function NotificationsDropdown() {
 
           {notificationsCount > 0 ? (
             <Fragment>
-              {notificationsList.map(notification => (
+              {notificationsList.slice(0, 6).map(notification => (
                 <DropdownMenu.Item key={notification.id} className="px-4 border-none">
                   <NotificationTitle withoutCloseIcon notification={notification} />
                 </DropdownMenu.Item>
