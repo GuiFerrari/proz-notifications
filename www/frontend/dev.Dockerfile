@@ -1,6 +1,6 @@
 FROM node:18-alpine
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
