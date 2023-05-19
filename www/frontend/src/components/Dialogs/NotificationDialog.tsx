@@ -18,7 +18,7 @@ export function NotificationDialog({
   return (
     <Dialog isOpen={isOpen} setIsOpen={setIsOpen}>
       <div className="pt-4 px-4">
-        <NotificationTitle notification={notificationsOpen!} />
+        <NotificationTitle notification={notificationsOpen!} closeButtonAction={closeDialog} />
 
         <p className="font-bold text-sm tracking-wide opacity-60 pb-4">
           {notificationsOpen?.description}
